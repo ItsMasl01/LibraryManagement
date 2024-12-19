@@ -1,30 +1,49 @@
 pipeline {
     agent any
     environment {
-        MAVEN_HOME = tool 'Maven'
+        SONAR_PROJECT_KEY = 'Library_Management'
     }
     stages {
-        stage('Checkout') {
+        stage('checkout') {
             steps {
-                git 'https://github.com/votre-depot/GestionBibliotheque.git'
+                withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_PAT')]) {
+                script {
+                    if (fileExists('LibraryManagement')) {
+                        dir('LibraryManagement') {
+                            sh "git reset --hard" 
+                            sh "git clean -fd" 
+                            sh "git pull origin main"
+                        }
+                    } else {
+                        sh "git clone https://${GITHUB_PAT}@github.com/ItsMasl01/LibraryManagement.git"
+                    }
+                }
+                }
             }
         }
         stage('Build') {
             steps {
-                sh '${MAVEN_HOME}/bin/mvn clean compile'
+                sh 'mvn clean compile'
             }
         }
         stage('Test') {
             steps {
-                sh '${MAVEN_HOME}/bin/mvn test'
+                sh 'mvn test'
             }
         }
         stage('Quality Analysis') {
             steps {
-                withSonarQubeEnv('SonarQube') {
-                    sh '${MAVEN_HOME}/bin/mvn sonar:sonar'
-                }
-            }
+				withCredentials([string(credentialsId: 'sonarcube-token', variable: 'SONAR_TOKEN')]) {
+				   
+					withSonarQubeEnv('SonarQube') {
+						sh """
+                             mvn sonar:sonar \
+                            -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
+                            -Dsonar.login=${SONAR_TOKEN}
+                    	"""
+					}	
+				}
+			}
         }
         stage('Deploy') {
             steps {
@@ -34,12 +53,12 @@ pipeline {
     }
     post {
         success {
-            emailext to: 'votre-email@example.com',
+            mail to: 'meryamassemlali@gmail.com',
                 subject: 'Build Success',
                 body: 'Le build a été complété avec succès.'
         }
         failure {
-            emailext to: 'votre-email@example.com',
+            mail to: 'meryamassemlali@gmail.com',
                 subject: 'Build Failed',
                 body: 'Le build a échoué.'
         }
