@@ -6,11 +6,10 @@ import com.library.service.StudentService;
 import com.library.model.Book;
 import com.library.model.Student;
 import com.library.model.Borrow;
-import com.library.dao.BorrowDAO;  // Importer BorrowDAO
+import com.library.dao.BorrowDAO;
 
 import java.security.SecureRandom;
 import java.util.Date;
-import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
@@ -75,10 +74,9 @@ public class Main {
                     Student studentForBorrow = studentService.findStudentById(studentId);
                     Book bookForBorrow = bookService.findBookById(bookId);
                     if (studentForBorrow != null && bookForBorrow != null) {
-                        // Créer un objet Borrow avec les informations nécessaires
                         SecureRandom random = new SecureRandom();
-                        borrow = new Borrow(random.nextInt(10000),studentForBorrow, bookForBorrow, new Date(), null);
-                        borrowService.borrowBook(borrow);  // Appel de la méthode avec l'objet Borrow
+                        borrow = new Borrow(random.nextInt(1000),studentForBorrow, bookForBorrow, new Date(), null);
+                        borrowService.borrowBook(borrow);
                     } else {
                         System.out.println("Étudiant ou livre introuvable.");
                     }
