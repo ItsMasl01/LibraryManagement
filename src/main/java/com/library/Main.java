@@ -7,6 +7,8 @@ import com.library.model.Book;
 import com.library.model.Student;
 import com.library.model.Borrow;
 import com.library.dao.BorrowDAO;  // Importer BorrowDAO
+
+import java.security.SecureRandom;
 import java.util.Date;
 import java.util.Random;
 import java.util.Scanner;
@@ -74,7 +76,7 @@ public class Main {
                     Book bookForBorrow = bookService.findBookById(bookId);
                     if (studentForBorrow != null && bookForBorrow != null) {
                         // Créer un objet Borrow avec les informations nécessaires
-                        Random random = new Random();
+                        SecureRandom random = new SecureRandom();
                         borrow = new Borrow(random.nextInt(10000),studentForBorrow, bookForBorrow, new Date(), null);
                         borrowService.borrowBook(borrow);  // Appel de la méthode avec l'objet Borrow
                     } else {
