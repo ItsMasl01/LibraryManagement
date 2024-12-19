@@ -1,4 +1,31 @@
 -------------------------------------------------------------------------------
 Test set: com.library.BorrowServiceTest
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.690 s -- in com.library.BorrowServiceTest
+Tests run: 3, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 0.015 s <<< FAILURE! -- in com.library.BorrowServiceTest
+com.library.BorrowServiceTest.testBorrowBookStudentNotFound -- Time elapsed: 0.008 s <<< ERROR!
+java.lang.NoClassDefFoundError: Could not initialize class com.library.util.DbConnection
+	at com.library.dao.BorrowDAO.truncate(BorrowDAO.java:93)
+	at com.library.service.BorrowService.truncate(BorrowService.java:33)
+	at com.library.BorrowServiceTest.setUp(BorrowServiceTest.java:30)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+com.library.BorrowServiceTest.testReturnBook -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.NoClassDefFoundError: Could not initialize class com.library.util.DbConnection
+	at com.library.dao.BorrowDAO.truncate(BorrowDAO.java:93)
+	at com.library.service.BorrowService.truncate(BorrowService.java:33)
+	at com.library.BorrowServiceTest.setUp(BorrowServiceTest.java:30)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+com.library.BorrowServiceTest.testBorrowBook -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.NoClassDefFoundError: Could not initialize class com.library.util.DbConnection
+	at com.library.dao.BorrowDAO.truncate(BorrowDAO.java:93)
+	at com.library.service.BorrowService.truncate(BorrowService.java:33)
+	at com.library.BorrowServiceTest.setUp(BorrowServiceTest.java:30)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+

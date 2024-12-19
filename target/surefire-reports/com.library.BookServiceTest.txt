@@ -1,4 +1,34 @@
 -------------------------------------------------------------------------------
 Test set: com.library.BookServiceTest
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.765 s -- in com.library.BookServiceTest
+Tests run: 3, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 0.142 s <<< FAILURE! -- in com.library.BookServiceTest
+com.library.BookServiceTest.testAddBook -- Time elapsed: 0.075 s <<< ERROR!
+java.lang.ExceptionInInitializerError
+	at com.library.dao.BookDAO.truncate(BookDAO.java:156)
+	at com.library.service.BookService.truncate(BookService.java:41)
+	at com.library.BookServiceTest.setUp(BookServiceTest.java:16)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+Caused by: java.lang.RuntimeException: Unable to find application.properties in resources folder
+	at com.library.util.DbConnection.<clinit>(DbConnection.java:19)
+	... 6 more
+
+com.library.BookServiceTest.testUpdateBook -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.NoClassDefFoundError: Could not initialize class com.library.util.DbConnection
+	at com.library.dao.BookDAO.truncate(BookDAO.java:156)
+	at com.library.service.BookService.truncate(BookService.java:41)
+	at com.library.BookServiceTest.setUp(BookServiceTest.java:16)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+com.library.BookServiceTest.testDeleteBook -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.NoClassDefFoundError: Could not initialize class com.library.util.DbConnection
+	at com.library.dao.BookDAO.truncate(BookDAO.java:156)
+	at com.library.service.BookService.truncate(BookService.java:41)
+	at com.library.BookServiceTest.setUp(BookServiceTest.java:16)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
